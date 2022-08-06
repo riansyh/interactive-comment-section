@@ -8,9 +8,9 @@ export const UpdateCard = ({ data, id, commentId, closeEdit, type }) => {
 
     const [payload, setPayload] = useState({
         type,
-        id: commentId ? commentId : id,
+        id: commentId != null ? commentId : id,
         content: data.content,
-        commentId: commentId ? id : null,
+        commentId: commentId != null ? id : null,
     });
 
     const handleSubmit = (e) => {

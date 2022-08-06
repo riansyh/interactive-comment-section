@@ -13,7 +13,7 @@
 
 @layer components {
     .input {
-        @apply px-4 py-2 rounded-lg border-[1px] border-dark-blue min-h-[80px];
+        @apply px-4 py-2 rounded-lg border-[1px] border-light-grayish-blue transition-colors duration-300 focus:outline-none focus:border-dark-blue min-h-[80px];
     }
 }
 

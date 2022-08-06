@@ -69,14 +69,14 @@ const commentSlice = createSlice({
     initialState,
     reducers: {
         add: (state, action) => {
-            state.push({
+            state[Object.keys(state).length] = {
                 id: state.length + 1,
                 content: action.payload.content,
                 createdAt: "Just now",
                 score: 0,
                 user: action.payload.user,
                 replies: [],
-            });
+            };
         },
         replied: (state, action) => {
             const index =
@@ -99,13 +99,16 @@ const commentSlice = createSlice({
             if (action.payload.type == "comment") {
                 state[action.payload.id].content = action.payload.content;
             } else {
-                state[action.payload.commentId].replies[action.payload.id].content =
+                state[action.payload.id].replies[action.payload.commentId].content =
                     action.payload.content;
             }
         },
         deleted: (state, action) => {
             if (action.payload.type == "comment") {
-                return state.filter((comment, index) => index != action.payload.id);
+                const newState = { ...state };
+                delete newState[action.payload.id];
+                console.log(action.payload.id);
+                return newState;
             } else {
                 const newComment = {
                     ...state[action.payload.commentId],
@@ -114,8 +117,7 @@ const commentSlice = createSlice({
                     ),
                 };
 
-                state.splice(action.payload.commentId, 1);
-                state.splice(action.payload.commentId, 0, newComment);
+                state[action.payload.commentId] = newComment;
             }
         },
         upvoted: (state, action) => {

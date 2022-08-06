@@ -35,6 +35,7 @@ export const AddComment = () => {
             <textarea
                 className="input flex-grow"
                 rows="3"
+                placeholder="Add a comment..."
                 value={payload.content}
                 onChange={(e) =>
                     setPayload((val) => ({

@@ -8,7 +8,7 @@ export const VoteCard = ({ score, id, commentId, type }) => {
     const payload = {
         type,
         id,
-        commentId: commentId ? commentId : null,
+        commentId: commentId != null ? commentId : null,
     };
 
     return (

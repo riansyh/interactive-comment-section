@@ -41,6 +41,7 @@ export const ReplyComment = ({ id, replyingTo, type, commentId, closeReply }) =>
                 autoFocus
                 className="input flex-grow"
                 rows="3"
+                placeholder="Add a reply..."
                 value={payload.content}
                 onChange={(e) =>
                     setPayload((val) => ({
