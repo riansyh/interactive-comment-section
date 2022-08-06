@@ -2,7 +2,7 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { Button } from "./Button";
 
-export const Modal = ({ show, handleClose }) => {
+export const Modal = ({ show, handleClose, handleDelete }) => {
     return createPortal(
         <>
             {show && (
@@ -23,7 +23,7 @@ export const Modal = ({ show, handleClose }) => {
                             <Button color="#68727E" isModalButton clickHandler={handleClose}>
                                 No, Cancel
                             </Button>
-                            <Button color="#EE6368" isModalButton>
+                            <Button color="#EE6368" isModalButton clickHandler={handleDelete}>
                                 Yes, Delete
                             </Button>
                         </div>
