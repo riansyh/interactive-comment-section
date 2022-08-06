@@ -1,5 +1,6 @@
 import { Button } from "./components/Button";
 import { CommentCard } from "./components/CommentCard";
+import { Modal } from "./components/Modal";
 import { ReplyContainer } from "./components/ReplyContainer";
 
 function App() {

@@ -1,11 +1,11 @@
 import React from "react";
 
-export const Button = ({ children, clickHandler, color }) => {
+export const Button = ({ children, clickHandler, color, isModalButton }) => {
     return (
         <button
-            className="px-4 py-3 min-w-[100px] rounded-lg font-medium uppercase text-white h-fit hover-btn"
+            className="px-4 py-3 min-w-[100px] rounded-lg font-medium uppercase text-white h-fit w-fit hover-btn"
             onClick={clickHandler}
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: color, width: isModalButton ? "100%" : "fit" }}
         >
             {children}
         </button>
