@@ -39,7 +39,7 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                 handleClose={() => setShowModal(false)}
                 handleDelete={deleteComment}
             ></Modal>
-            <div className="card bg-white rounded-10 flex gap-6 p-6 w-full">
+            <div className="card bg-white rounded-10 flex gap-6 p-6 w-full mt-4">
                 <VoteCard score={data.score} type={type} id={index} commentId={commentId} />
                 <div className="comment flex flex-col gap-4 w-full">
                     <div className="header flex justify-between w-full items-center">

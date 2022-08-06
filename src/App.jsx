@@ -9,7 +9,7 @@ function App() {
 
     return (
         <section className="App bg-very-light-gray min-h-screen flex justify-center py-[60px]">
-            <section className="max-w-[732px] w-full flex flex-col gap-4">
+            <section className="max-w-[732px] w-full flex flex-col">
                 {comments.map((comment, index) => {
                     if (comment.replies.length > 0) {
                         return (
