@@ -16,13 +16,15 @@ export const UpdateCard = ({ data, id, commentId, closeEdit, type }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(updated(payload));
+        if (payload.content != "") {
+            dispatch(updated(payload));
 
-        closeEdit();
-        setPayload((val) => ({
-            ...val,
-            content: "",
-        }));
+            closeEdit();
+            setPayload((val) => ({
+                ...val,
+                content: "",
+            }));
+        }
     };
 
     return (
@@ -39,7 +41,7 @@ export const UpdateCard = ({ data, id, commentId, closeEdit, type }) => {
                     }))
                 }
             ></textarea>
-            <Button color="#5259B4">UPDATE</Button>
+            <Button color={payload.content != "" ? "#5259B4" : "rgb(153 157 203)"}>UPDATE</Button>
         </form>
     );
 };

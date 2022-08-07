@@ -19,13 +19,15 @@ export const ReplyComment = ({ id, replyingTo, type, commentId, closeReply }) =>
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(replied(payload));
+        if (payload.content != "") {
+            dispatch(replied(payload));
 
-        closeReply();
-        setPayload((val) => ({
-            ...val,
-            content: "",
-        }));
+            closeReply();
+            setPayload((val) => ({
+                ...val,
+                content: "",
+            }));
+        }
     };
 
     return (
@@ -56,7 +58,7 @@ export const ReplyComment = ({ id, replyingTo, type, commentId, closeReply }) =>
                     <img src={user.image.png} alt="avatar" />
                 </div>
 
-                <Button color="#5259B4" submit>
+                <Button color={payload.content != "" ? "#5259B4" : "rgb(153 157 203)"} submit>
                     REPLY
                 </Button>
             </div>

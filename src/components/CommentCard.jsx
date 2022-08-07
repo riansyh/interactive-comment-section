@@ -6,6 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleted } from "../feature/comment/commentSlice";
 import { ReplyComment } from "./ReplyComment";
 import { UpdateCard } from "./UpdateCard";
+import { Transition } from "react-transition-group";
+
+const duration = 300;
+
+const defaultStyle = {
+    transition: `opacity 300ms ease-in-out`,
+    opacity: 0,
+    height: "0px",
+    visibility: "hidden",
+};
+
+const transitionStyles = {
+    entering: { opacity: 1, height: "auto", visibility: "visible" },
+    entered: { opacity: 1, height: "auto", visibility: "visible" },
+    exiting: { opacity: 0, height: "0", visibility: "hidden" },
+    exited: { opacity: 0, height: "0", visibility: "hidden" },
+};
 
 export const CommentCard = ({ data, type, commentId = null, index }) => {
     const [isReplying, setIsReplying] = useState(false);
@@ -30,6 +47,7 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                 commentId,
             })
         );
+        setShowModal(false);
     };
 
     return (
@@ -142,15 +160,25 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                     </div>
                 </div>
             </div>
-            {isReplying && (
-                <ReplyComment
-                    id={index}
-                    replyingTo={data.user.username}
-                    type={type}
-                    commentId={commentId}
-                    closeReply={() => setIsReplying(false)}
-                />
-            )}
+
+            <Transition in={isReplying} timeout={duration}>
+                {(state) => (
+                    <div
+                        style={{
+                            ...defaultStyle,
+                            ...transitionStyles[state],
+                        }}
+                    >
+                        <ReplyComment
+                            id={index}
+                            replyingTo={data.user.username}
+                            type={type}
+                            commentId={commentId}
+                            closeReply={() => setIsReplying(false)}
+                        />
+                    </div>
+                )}
+            </Transition>
         </>
     );
 };
