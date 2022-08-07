@@ -33,7 +33,7 @@ export const ReplyComment = ({ id, replyingTo, type, commentId, closeReply }) =>
     return (
         <form
             onSubmit={handleSubmit}
-            className="reply-card bg-white rounded-10 flex flex-col md:flex-row gap-4 p-6 w-full mt-2 justify-between"
+            className="comment reply-card bg-white rounded-10 flex flex-col md:flex-row gap-4 p-6 w-full mt-2 justify-between"
         >
             <div className="avatar h-10 w-10 rounded-full flex-grow-0 hidden md:block overflow-hidden bg-light-grayish-blue">
                 <img src={user.image.png} alt="avatar" />

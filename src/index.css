@@ -11,6 +11,21 @@
     font-weight: 400;
 }
 
+.comment {
+    animation: display-comment 0.5s;
+}
+
+@keyframes display-comment {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @layer components {
     .input {
         @apply px-4 py-2 rounded-lg border-[1px] border-light-grayish-blue transition-colors duration-300 focus:outline-none focus:border-dark-blue min-h-[80px];

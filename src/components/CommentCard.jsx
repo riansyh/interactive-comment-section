@@ -38,6 +38,7 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
     }, []);
 
     const deleteComment = () => {
+        setShowModal(false);
         dispatch(
             deleted({
                 type,
@@ -55,7 +56,7 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                 handleDelete={deleteComment}
             ></Modal>
             <div
-                className="card bg-white rounded-10 flex gap-6 p-6 w-full mt-4"
+                className="comment card bg-white rounded-10 flex gap-6 p-6 w-full mt-4"
                 style={{ marginTop: type != "comment" ? "0" : "" }}
             >
                 <div className="hidden md:block">
