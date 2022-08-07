@@ -11,17 +11,15 @@ import { Transition } from "react-transition-group";
 const duration = 300;
 
 const defaultStyle = {
-    transition: `opacity 300ms ease-in-out`,
+    transition: `opacity ${duration}ms ease-in-out`,
     opacity: 0,
-    height: "0px",
-    visibility: "hidden",
 };
 
 const transitionStyles = {
-    entering: { opacity: 1, height: "auto", visibility: "visible" },
-    entered: { opacity: 1, height: "auto", visibility: "visible" },
-    exiting: { opacity: 0, height: "0", visibility: "hidden" },
-    exited: { opacity: 0, height: "0", visibility: "hidden" },
+    entering: { opacity: 1 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 },
 };
 
 export const CommentCard = ({ data, type, commentId = null, index }) => {
@@ -47,7 +45,6 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                 commentId,
             })
         );
-        setShowModal(false);
     };
 
     return (
@@ -92,14 +89,32 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                                     >
                                         Delete
                                     </ActionButton>
-                                    <ActionButton
-                                        logo="./images/icon-edit.svg"
-                                        color="#5259B4"
-                                        clickHandler={() => setIsEditing(!isEditing)}
-                                    >
-                                        Edit
-                                    </ActionButton>
+                                    {isEditing ? (
+                                        <ActionButton
+                                            logo="./images/icon-x.svg"
+                                            color="#5b5b5b"
+                                            clickHandler={() => setIsEditing(!isEditing)}
+                                        >
+                                            Cancel
+                                        </ActionButton>
+                                    ) : (
+                                        <ActionButton
+                                            logo="./images/icon-edit.svg"
+                                            color="#5259B4"
+                                            clickHandler={() => setIsEditing(!isEditing)}
+                                        >
+                                            Edit
+                                        </ActionButton>
+                                    )}
                                 </>
+                            ) : isReplying ? (
+                                <ActionButton
+                                    logo="./images/icon-x.svg"
+                                    color="#5b5b5b"
+                                    clickHandler={() => setIsReplying(!isReplying)}
+                                >
+                                    Cancel
+                                </ActionButton>
                             ) : (
                                 <ActionButton
                                     logo="./images/icon-reply.svg"
@@ -139,14 +154,32 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                                     >
                                         Delete
                                     </ActionButton>
-                                    <ActionButton
-                                        logo="./images/icon-edit.svg"
-                                        color="#5259B4"
-                                        clickHandler={() => setIsEditing(!isEditing)}
-                                    >
-                                        Edit
-                                    </ActionButton>
+                                    {isEditing ? (
+                                        <ActionButton
+                                            logo="./images/icon-x.svg"
+                                            color="#5b5b5b"
+                                            clickHandler={() => setIsEditing(!isEditing)}
+                                        >
+                                            Cancel
+                                        </ActionButton>
+                                    ) : (
+                                        <ActionButton
+                                            logo="./images/icon-edit.svg"
+                                            color="#5259B4"
+                                            clickHandler={() => setIsEditing(!isEditing)}
+                                        >
+                                            Edit
+                                        </ActionButton>
+                                    )}
                                 </>
+                            ) : isReplying ? (
+                                <ActionButton
+                                    logo="./images/icon-x.svg"
+                                    color="#5b5b5b"
+                                    clickHandler={() => setIsReplying(!isReplying)}
+                                >
+                                    Cancel
+                                </ActionButton>
                             ) : (
                                 <ActionButton
                                     logo="./images/icon-reply.svg"
@@ -160,25 +193,15 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                     </div>
                 </div>
             </div>
-
-            <Transition in={isReplying} timeout={duration}>
-                {(state) => (
-                    <div
-                        style={{
-                            ...defaultStyle,
-                            ...transitionStyles[state],
-                        }}
-                    >
-                        <ReplyComment
-                            id={index}
-                            replyingTo={data.user.username}
-                            type={type}
-                            commentId={commentId}
-                            closeReply={() => setIsReplying(false)}
-                        />
-                    </div>
-                )}
-            </Transition>
+            {isReplying && (
+                <ReplyComment
+                    id={index}
+                    replyingTo={data.user.username}
+                    type={type}
+                    commentId={commentId}
+                    closeReply={() => setIsReplying(false)}
+                />
+            )}
         </>
     );
 };

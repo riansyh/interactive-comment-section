@@ -4,6 +4,8 @@ import { Button } from "./Button";
 import { CSSTransition } from "react-transition-group";
 
 export const Modal = ({ show, handleClose, handleDelete }) => {
+    show ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+
     return createPortal(
         <CSSTransition in={show} unmountOnExit timeout={{ enter: 0, exit: 300 }}>
             <section
