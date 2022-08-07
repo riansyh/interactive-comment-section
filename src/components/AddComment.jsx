@@ -52,7 +52,7 @@ export const AddComment = () => {
                 </div>
 
                 <Button color={payload.content != "" ? "#5259B4" : "rgb(153 157 203)"} submit>
-                    REPLY
+                    SEND
                 </Button>
             </div>
         </form>
