@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { now } from "moment";
 
 const initialState = [
     {
@@ -72,7 +73,7 @@ const commentSlice = createSlice({
             state[Object.keys(state).length] = {
                 id: state.length + 1,
                 content: action.payload.content,
-                createdAt: "Just now",
+                createdAt: Date(),
                 score: 0,
                 user: action.payload.user,
                 replies: [],
@@ -107,7 +108,7 @@ const commentSlice = createSlice({
             if (action.payload.type == "comment") {
                 const newState = { ...state };
                 delete newState[action.payload.id];
-                console.log(action.payload.id);
+
                 return newState;
             } else {
                 const newComment = {

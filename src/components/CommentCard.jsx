@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleted } from "../feature/comment/commentSlice";
 import { ReplyComment } from "./ReplyComment";
 import { UpdateCard } from "./UpdateCard";
-import { Transition } from "react-transition-group";
+import moment from "moment";
 
 const duration = 300;
 
@@ -78,7 +78,11 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                                 )}
                             </div>
 
-                            <p className="text-grayis-blue text-sm">{data.createdAt}</p>
+                            <p className="text-grayis-blue text-sm">
+                                {data.createdAt.length >= 16
+                                    ? moment(data.createdAt).fromNow()
+                                    : data.createdAt}
+                            </p>
                         </div>
                         <div className="hidden gap-4 md:flex">
                             {isOwnReply ? (
