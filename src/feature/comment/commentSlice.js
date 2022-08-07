@@ -128,7 +128,7 @@ const commentSlice = createSlice({
             }
         },
         downvoted: (state, action) => {
-            if (action.payload.type == "comment" && state[action.payload.id].score > 0) {
+            if (action.payload.type == "comment") {
                 state[action.payload.id].score -= 1;
             } else if (state[action.payload.commentId].replies[action.payload.id].score > 0) {
                 state[action.payload.commentId].replies[action.payload.id].score -= 1;

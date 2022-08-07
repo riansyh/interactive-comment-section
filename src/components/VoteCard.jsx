@@ -22,6 +22,7 @@ export const VoteCard = ({ score, id, commentId, type }) => {
                 case "minus":
                     dispatch(downvoted(payload));
                     setStatus("minus");
+
                     break;
             }
         } else {
