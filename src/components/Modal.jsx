@@ -11,7 +11,7 @@ export const Modal = ({ show, handleClose, handleDelete }) => {
                     onClick={handleClose}
                 >
                     <div
-                        className="px-8 py-6 bg-white rounded-10 w-full max-w-[400px]"
+                        className="px-8 py-6 bg-white rounded-10 w-full max-w-[400px] mx-3"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <h2 className="font-bold text-2xl text-dark-blue">Delete comment</h2>

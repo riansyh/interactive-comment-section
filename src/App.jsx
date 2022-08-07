@@ -6,10 +6,9 @@ import { AddComment } from "./components/AddComment";
 
 function App() {
     const comments = useSelector((state) => state.comment);
-    console.log(comments);
 
     return (
-        <section className="App bg-very-light-gray min-h-screen flex justify-center py-[60px]">
+        <section className="App bg-very-light-gray min-h-screen flex justify-center py-[60px] px-4">
             <section className="max-w-[732px] w-full flex flex-col">
                 {Object.values(comments).map((comment, index) => {
                     const key = Object.keys(comments)[index];

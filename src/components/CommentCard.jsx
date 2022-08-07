@@ -39,12 +39,17 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                 handleClose={() => setShowModal(false)}
                 handleDelete={deleteComment}
             ></Modal>
-            <div className="card bg-white rounded-10 flex gap-6 p-6 w-full mt-4">
-                <VoteCard score={data.score} type={type} id={index} commentId={commentId} />
+            <div
+                className="card bg-white rounded-10 flex gap-6 p-6 w-full mt-4"
+                style={{ marginTop: type != "comment" ? "0" : "" }}
+            >
+                <div className="hidden md:block">
+                    <VoteCard score={data.score} type={type} id={index} commentId={commentId} />
+                </div>
                 <div className="comment flex flex-col gap-4 w-full">
                     <div className="header flex justify-between w-full items-center">
                         <div className="flex items-center gap-4">
-                            <div className="avatar h-8 w-8 rounded-full overflow-hidden bg-light-grayish-blue">
+                            <div className="avatar h-8 w-8 rounded-full overflow-hidden bg-light-grayish-blue flex-grow-0">
                                 <img src={data.user.image.png} alt="avatar" />
                             </div>
 
@@ -57,9 +62,9 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                                 )}
                             </div>
 
-                            <p className="text-grayis-blue">{data.createdAt}</p>
+                            <p className="text-grayis-blue text-sm">{data.createdAt}</p>
                         </div>
-                        <div className="flex gap-4">
+                        <div className="hidden gap-4 md:flex">
                             {isOwnReply ? (
                                 <>
                                     <ActionButton
@@ -104,6 +109,37 @@ export const CommentCard = ({ data, type, commentId = null, index }) => {
                             {data.content}
                         </p>
                     )}
+                    <div className="flex justify-between md:hidden">
+                        <VoteCard score={data.score} type={type} id={index} commentId={commentId} />
+                        <div className="flex gap-3">
+                            {isOwnReply ? (
+                                <>
+                                    <ActionButton
+                                        logo="./images/icon-delete.svg"
+                                        color="#EE6368"
+                                        clickHandler={() => setShowModal(true)}
+                                    >
+                                        Delete
+                                    </ActionButton>
+                                    <ActionButton
+                                        logo="./images/icon-edit.svg"
+                                        color="#5259B4"
+                                        clickHandler={() => setIsEditing(!isEditing)}
+                                    >
+                                        Edit
+                                    </ActionButton>
+                                </>
+                            ) : (
+                                <ActionButton
+                                    logo="./images/icon-reply.svg"
+                                    color="#5259B4"
+                                    clickHandler={() => setIsReplying(!isReplying)}
+                                >
+                                    Reply
+                                </ActionButton>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
             {isReplying && (
