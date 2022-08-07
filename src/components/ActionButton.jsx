@@ -7,7 +7,7 @@ export const ActionButton = ({ children, logo, clickHandler, color }) => {
             className="flex gap-2 items-center font-medium hover-btn"
             style={{ color: color }}
         >
-            <img src={logo} alt={children} />
+            <img src={logo} alt={`${children}-icon`} />
             {children}
         </button>
     );
