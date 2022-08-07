@@ -8,7 +8,17 @@ function App() {
     const comments = useSelector((state) => state.comment);
 
     return (
-        <section className="App bg-very-light-gray min-h-screen flex justify-center py-[60px] px-4">
+        <section className="App bg-very-light-gray min-h-screen flex flex-col items-center gap-6 justify-center py-[60px] px-4">
+            <div className="text-center">
+                <h1 className="font-medium text-dark-blue text-2xl">Interactive Comment Section</h1>
+                <p className="text-grayis-blue text-sm mt-2">
+                    Created by{" "}
+                    <a className="font-bold" href="https://github.com/riansyh">
+                        riansyh
+                    </a>{" "}
+                </p>
+            </div>
+
             <section className="max-w-[732px] w-full flex flex-col">
                 {Object.values(comments).map((comment, index) => {
                     const key = Object.keys(comments)[index];
